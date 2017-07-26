@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+# Database
+gem "standalone_migrations"
+gem "pg"
+gem 'activerecord'
+
+# Tests
+gem 'rspec'
+
+# Output Beautifier
+gem 'command_line_reporter', '>=3.0'
+
+# Debugger
+gem 'pry-byebug'
