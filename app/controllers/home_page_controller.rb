@@ -17,11 +17,15 @@ class HomePageController < ApplicationController
     aligned " * Type 'quit' to exit"
   end
 
+  #
+  # @param {UserInterface} user_interface
+  # @param {String} option
+  #
   def post_handle_option(user_interface, option)
     resource = OPTION_TO_RESOURCE[option]
 
     if resource.present?
-      controller = ResourceSearchController.new(resource)
+      controller = SearchFieldsController.new(resource)
       user_interface.next(controller)
     else
       handle_error(user_interface, option)
