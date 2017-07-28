@@ -24,8 +24,15 @@ class ApplicationController
   # @param {String} option
   #
   def handle_option(user_interface, option)
-    return if option == "quit"
-    post_handle_option(user_interface, option)
+    case option
+    when "quit"
+      return
+    when "restart"
+      home_page_controller = HomePageController.new
+      user_interface.next(home_page_controller)
+    else
+      post_handle_option(user_interface, option)
+    end
   end
 
   #
