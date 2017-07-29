@@ -7,7 +7,7 @@ class HomePageController < ApplicationController
   }.freeze
 
   def render_body
-    header title: "Welcome to Zendesk Search", align: "center", bold: true
+    header title: "Welcome to Simple CLI Search", align: "center", bold: true
   end
 
   def render_options
