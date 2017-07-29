@@ -17,6 +17,7 @@ require_relative "app/controllers/home_page_controller"
 require_relative "app/controllers/search_fields_controller"
 require_relative "app/controllers/search_value_controller"
 require_relative "app/controllers/search_results_controller"
+require_relative "app/controllers/detailed_result_controller"
 
 # Initialize user interface
 user_interface = UserInterface.new

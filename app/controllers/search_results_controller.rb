@@ -43,7 +43,13 @@ class SearchResultsController < ApplicationController
   # @param {String} option
   #
   def post_handle_option(user_interface, option)
-    home_page_controller = HomePageController.new
-    user_interface.next(home_page_controller)
+    if get_search_result_ids.map.include?(option)
+      controller = DetailedResultController.new(resource_class, option)
+      user_interface.next(controller)
+
+    else
+      handle_error(user_interface, option)
+    end
+  end
   end
 end
