@@ -56,7 +56,7 @@ class ApplicationController
     puts exception.message
     vertical_spacing 1
 
-    handle_error(user_interface, option)
+    handle_invalid_option(user_interface)
   end
 
   #
@@ -69,15 +69,14 @@ class ApplicationController
 
   #
   # @param {UserInterface} user_interface
-  # @param {String} option
   #
-  def handle_error(user_interface, option)
+  def handle_invalid_option(user_interface)
     vertical_spacing 1
     aligned("Sorry, you did not enter a valid option", color: "red")
     aligned("Please try again", color: "red")
     vertical_spacing 1
 
-    new_option = gets.chomp
+    new_option = STDIN.gets.chomp
     self.handle_option(user_interface, new_option)
   end
 end

@@ -28,7 +28,7 @@ class SearchValueController < ApplicationController
       user_interface.next(controller)
 
     else
-      handle_error(user_interface, option)
+      handle_invalid_option(user_interface)
     end
   end
 end

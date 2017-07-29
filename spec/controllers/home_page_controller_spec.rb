@@ -22,8 +22,8 @@ describe HomePageController do
     end
 
     context "given invalid option" do
-      it "handles the error" do
-        expect(home_page_controller).to receive(:handle_error)
+      it "calls #handle_invalid_option" do
+        expect(home_page_controller).to receive(:handle_invalid_option)
         home_page_controller.post_handle_option(user_interface, '4')
       end
     end
