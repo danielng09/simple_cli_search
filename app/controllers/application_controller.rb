@@ -3,10 +3,6 @@ require 'command_line_reporter'
 class ApplicationController
   include CommandLineReporter
 
-  def initialize
-
-  end
-
   def render
     system('clear')
     horizontal_rule(char: "*")
@@ -19,7 +15,6 @@ class ApplicationController
     render_options
     render_default_options
     vertical_spacing 1
-
   end
 
   def render_body
@@ -28,6 +23,7 @@ class ApplicationController
 
   def render_options_header
     aligned "Select one of the following options:"
+    vertical_spacing 1
   end
 
   def render_options
@@ -53,6 +49,14 @@ class ApplicationController
     else
       post_handle_option(user_interface, option)
     end
+
+  rescue => exception
+    vertical_spacing 1
+    aligned "Error Message:", color: "red"
+    puts exception.message
+    vertical_spacing 1
+
+    handle_error(user_interface, option)
   end
 
   #
