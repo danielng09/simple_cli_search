@@ -15,24 +15,23 @@ class SearchResultsController < ApplicationController
     puts "Found #{@search_results.length} result(s)"
 
     # Search Results Table
-    @search_results.each do |search_result|
-      vertical_spacing 1
+    unless @search_results.empty?
       table(border: true) do
-
         # Header
         row header: true do
-          column("Field", width: 20)
-          column("Value", width: 80)
-        end
-
-        # Body
-        search_result.each do |column_name, column_value|
-          row do
-            column(column_name, width: 20)
-            column(column_value, width: 80)
+          resource_class::PRIMARY_ATTRIBUTES.each do |column_name|
+            column(column_name, width: 25)
           end
         end
 
+        # Results
+        @search_results.each do |search_result|
+          row do
+            search_result.each do |value|
+              column(value, width: 25)
+            end
+          end
+        end
       end
 
       puts "Enter any key to restart."
