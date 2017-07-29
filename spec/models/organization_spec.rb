@@ -21,5 +21,4 @@ describe Organization do
       expect(Organization::PRIMARY_ATTRIBUTES).to be_kind_of(Array)
     end
   end
-
 end

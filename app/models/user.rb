@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   PRIMARY_ATTRIBUTES = ["_id", "external_id", "name", "email"].freeze
 
   #
-  # @param {id} String
+  # @param {input} String
   #
-  def self.valid_search_input(search_field, id)
+  def self.valid_search_input(search_field, input)
     if search_field == PRIMARY_ATTRIBUTES.first
-      is_an_integer?(id)
+      is_an_integer?(input)
     else
       true
     end

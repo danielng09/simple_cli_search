@@ -13,11 +13,11 @@ class Ticket < ActiveRecord::Base
   end
 
   #
-  # @param {id} String
+  # @param {input} String
   #
-  def self.valid_search_input(search_field, id)
+  def self.valid_search_input(search_field, input)
     if search_field == PRIMARY_ATTRIBUTES.first
-      !is_an_integer?(id)
+      !is_an_integer?(input)
     else
       true
     end
