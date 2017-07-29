@@ -6,16 +6,6 @@ class HomePageController < ApplicationController
     "3" => Ticket
   }.freeze
 
-  def render_body
-    header title: "Welcome to Simple CLI Search", align: "center", bold: true
-  end
-
-  def render_options
-    aligned " * Type '1' to search for organizations"
-    aligned " * Type '2' to search for users"
-    aligned " * Type '3' to search for tickets"
-  end
-
   #
   # @param {UserInterface} user_interface
   # @param {String} option
@@ -29,6 +19,18 @@ class HomePageController < ApplicationController
     else
       handle_invalid_option(user_interface)
     end
+  end
+
+  private
+
+  def render_body
+    header title: "Welcome to Simple CLI Search", align: "center", bold: true
+  end
+
+  def render_options
+    aligned " * Type '1' to search for organizations"
+    aligned " * Type '2' to search for users"
+    aligned " * Type '3' to search for tickets"
   end
 
 end
