@@ -24,7 +24,7 @@ class HomePageController < ApplicationController
     resource = OPTION_TO_RESOURCE[option]
 
     if resource.present?
-      controller = SearchFieldsController.new(resource)
+      controller = SearchFieldsController.new(resource_class: resource)
       user_interface.next(controller)
     else
       handle_error(user_interface, option)
