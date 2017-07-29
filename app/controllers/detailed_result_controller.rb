@@ -2,10 +2,10 @@ class DetailedResultController < ApplicationController
 
   attr_accessor :resource_class, :search_value
 
-  def initialize(resource_class, search_value)
+  def initialize(resource_class:, search_value:)
     @resource_class = resource_class
     @search_value = search_value
-    @search_result = resource_class.find_by(_id: search_value).as_json
+    @search_result = resource_class.find_by(_id: search_value)
   end
 
   def render_body
@@ -23,7 +23,7 @@ class DetailedResultController < ApplicationController
       end
 
       # Body
-      @search_result.each do |column_name, column_value|
+      @search_result.as_json.each do |column_name, column_value|
         row do
           column(column_name, width: 20)
           column(column_value, width: 80)
@@ -34,7 +34,9 @@ class DetailedResultController < ApplicationController
   end
 
   def render_options
-    
+    @resource_class.reflections.keys.each do |relation|
+      aligned " * Type '#{relation}' if you'd like to view the corresponding #{relation}"
+    end
   end
 
   #
@@ -42,6 +44,14 @@ class DetailedResultController < ApplicationController
   # @param {String} option
   #
   def post_handle_option(user_interface, option)
+    if @resource_class.reflections.keys.include?(option)
+      results = @search_result.try(option)
+      controller = SearchResultsController.new(resource_class: results.first.class,
+                                               results: results)
+      user_interface.next(controller)
 
+    else
+      handle_error(user_interface, option)
+    end
   end
 end
