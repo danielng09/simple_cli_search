@@ -2,7 +2,7 @@ class SearchValueController < ApplicationController
 
   attr_accessor :resource_class, :search_field
 
-  def initialize(resource_class, search_field)
+  def initialize(resource_class:, search_field:)
     @resource_class = resource_class
     @search_field = search_field
 
@@ -21,7 +21,14 @@ class SearchValueController < ApplicationController
   # @param {String} option
   #
   def post_handle_option(user_interface, option)
-    controller = SearchResultsController.new(resource_class, search_field, option)
-    user_interface.next(controller)
+    if resource_class.valid_search_input(search_field, option)
+      controller = SearchResultsController.new(resource_class: resource_class,
+                                               search_field: search_field,
+                                               search_value: option)
+      user_interface.next(controller)
+
+    else
+      handle_error(user_interface, option)
+    end
   end
 end
