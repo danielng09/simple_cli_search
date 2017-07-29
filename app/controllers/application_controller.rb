@@ -13,10 +13,30 @@ class ApplicationController
     vertical_spacing 1
 
     render_body
+    vertical_spacing 1
+
+    render_options_header
+    render_options
+    render_default_options
+    vertical_spacing 1
+
   end
 
   def render_body
     nil
+  end
+
+  def render_options_header
+    aligned "Select one of the following options:"
+  end
+
+  def render_options
+    nil
+  end
+
+  def render_default_options
+    aligned " * Type 'quit' to exit"
+    aligned " * Type 'restart' to start over" unless self.is_a?(HomePageController)
   end
 
   #
@@ -48,8 +68,9 @@ class ApplicationController
   # @param {String} option
   #
   def handle_error(user_interface, option)
-    puts "Sorry, you did not enter a valid option"
-    puts "Please try again"
+    vertical_spacing 1
+    aligned("Sorry, you did not enter a valid option", color: "red")
+    aligned("Please try again", color: "red")
     vertical_spacing 1
 
     new_option = gets.chomp

@@ -12,7 +12,7 @@ class SearchResultsController < ApplicationController
   def render_body
     header title: "Search results for #{resource_class.name.pluralize.downcase}", align: "center", bold: true
     vertical_spacing 1
-    puts "Found #{@search_results.length} result(s)"
+    aligned("Found #{@search_results.length} result(s)", color: "green")
 
     # Search Results Table
     unless @search_results.empty?
@@ -34,8 +34,11 @@ class SearchResultsController < ApplicationController
         end
       end
 
-      puts "Enter any key to restart."
     end
+  end
+
+  def render_options
+    aligned " * Type the corresponding '_id' to view more details"
   end
 
   #

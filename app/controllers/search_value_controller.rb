@@ -10,8 +10,10 @@ class SearchValueController < ApplicationController
 
   def render_body
     header title: "Searching for '#{search_field}' field on #{resource_class.name.pluralize.downcase}", align: "center", bold: true
-    vertical_spacing 1
-    puts "Please enter a search value"
+  end
+
+  def render_options
+    aligned " * Type the '#{search_field}' value you'd like to search for"
   end
 
   #

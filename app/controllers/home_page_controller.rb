@@ -8,13 +8,12 @@ class HomePageController < ApplicationController
 
   def render_body
     header title: "Welcome to Zendesk Search", align: "center", bold: true
+  end
 
-    vertical_spacing 1
-    aligned "Select search options:"
+  def render_options
     aligned " * Type '1' to search for organizations"
     aligned " * Type '2' to search for users"
     aligned " * Type '3' to search for tickets"
-    aligned " * Type 'quit' to exit"
   end
 
   #

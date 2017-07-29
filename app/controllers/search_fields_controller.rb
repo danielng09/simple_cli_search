@@ -10,7 +10,6 @@ class SearchFieldsController < ApplicationController
 
     header title: "Searching for #{resource_class.name.pluralize.downcase}", align: "center", bold: true
     vertical_spacing 1
-    puts "Please select one of the fields you'd like to search by in the table below. You can type 'quit' at anytime to exit."
 
     vertical_spacing 1
 
@@ -29,6 +28,10 @@ class SearchFieldsController < ApplicationController
       end
 
     end
+  end
+
+  def render_options
+    aligned " * Type the corresponding field name you'd like to search by (i.e. '_id')"
   end
 
   #

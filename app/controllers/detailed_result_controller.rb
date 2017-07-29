@@ -32,4 +32,16 @@ class DetailedResultController < ApplicationController
 
     end
   end
+
+  def render_options
+    
+  end
+
+  #
+  # @param {UserInterface} user_interface
+  # @param {String} option
+  #
+  def post_handle_option(user_interface, option)
+
+  end
 end
