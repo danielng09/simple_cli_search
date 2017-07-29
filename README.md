@@ -4,19 +4,30 @@ This is a command line application with a simple user interface to search the da
 
 __Setup__:
 1. bundle gems
-    'bundle install'
-2. Setup the database - I used postgres
+    ```
+    bundle install
+    ```
+2. Setup the database (postgres)
+    * Start postgres, otherwise download from https://www.postgresql.org/
 3. Run all the rake tasks to
-  - create the database
-      'rake db:create'
-  - setup the schema
-      'rake db:migrate'
-  - seed the database
-      'rake db:seed'
+    * create the database
+      ```
+      rake db:create
+      ```
+    * setup the schema
+      ```
+      rake db:migrate
+      ```
+    * seed the database
+      ```
+      rake db:seed
+      ```
 4. Load the boot file from the app folder
-    'ruby boot.rb'
+    ```
+    ruby boot.rb
+    ```
 
 __Design__:
 For the database, I decided to use active records on top of postgres because it's a solid, proven technology and scales well. It took me a little longer to set up the database due to the unconventional configuration - primary keys, rake tasks, and active records without rails. Another option I considered was rolling my own ORM and saving the records in space on boot of the app but ended up going with active records in the end.
 
-For the user interface, I ended up creating controllers that were responsible for rendering views and handling the user input. Based on the user input, the controllers were also responsible for initializing the next controller.
+For the user interface, I ended up creating controllers that were responsible for rendering views and handling the user input. They were also responsible for determining which controller to initiate next.
