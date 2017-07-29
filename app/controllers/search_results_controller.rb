@@ -6,7 +6,7 @@ class SearchResultsController < ApplicationController
     @resource_class = resource_class
     @search_field = search_field
     @search_value = search_value
-    @search_results = resource_class.where("#{@search_field} = ?", @search_value).as_json
+    @search_results = resource_class.where("#{@search_field} = ?", @search_value).pluck(*resource_class::PRIMARY_ATTRIBUTES)
   end
 
   def render_body
