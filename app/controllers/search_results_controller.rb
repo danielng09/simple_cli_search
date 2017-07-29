@@ -51,5 +51,10 @@ class SearchResultsController < ApplicationController
       handle_error(user_interface, option)
     end
   end
+
+  private
+
+  def get_search_result_ids
+    @search_results.map { |search_result| search_result.first.to_s }
   end
 end
