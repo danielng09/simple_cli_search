@@ -46,7 +46,10 @@ class DetailedResultController < ApplicationController
   def post_handle_option(user_interface, option)
     if @resource_class.reflections.keys.include?(option)
       results = @search_result.try(option)
-      controller = SearchResultsController.new(resource_class: results.first.class,
+      results = results.is_a?(ActiveRecord::Relation) ? results : [results]
+      resource_class = results.first.class
+
+      controller = SearchResultsController.new(resource_class: resource_class,
                                                results: results)
       user_interface.next(controller)
 
