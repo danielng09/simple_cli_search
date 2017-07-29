@@ -1,3 +1,10 @@
+require 'yaml'
+require 'active_record'
+
+# Load database
+db_config = YAML::load(File.read("db/config.yml"))
+ActiveRecord::Base.establish_connection(db_config["development"])
+
 # Require scripts
 require_relative "scripts.rb"
 
