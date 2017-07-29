@@ -2,7 +2,7 @@ class SearchFieldsController < ApplicationController
 
   attr_accessor :resource_class
 
-  def initialize(resource_class)
+  def initialize(resource_class:)
     @resource_class = resource_class
   end
 
@@ -40,7 +40,8 @@ class SearchFieldsController < ApplicationController
   #
   def post_handle_option(user_interface, option)
     if resource_class.column_names.include?(option)
-      controller = SearchValueController.new(resource_class, option)
+      controller = SearchValueController.new(resource_class: resource_class,
+                                             search_field: option)
       user_interface.next(controller)
 
     else
