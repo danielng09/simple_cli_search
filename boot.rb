@@ -5,6 +5,9 @@ require 'pry-byebug'
 db_config = YAML::load(File.read("db/config.yml"))
 ActiveRecord::Base.establish_connection(db_config["development"])
 
+# Require utils
+require_relative "utils.rb"
+
 # Require all the models
 require_relative "app/models/organization"
 require_relative "app/models/user"
