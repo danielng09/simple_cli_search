@@ -12,7 +12,7 @@ class CreateTickets < ActiveRecord::Migration
       t.string :status
       t.integer :submitter_id
       t.integer :assignee_id
-      t.text :tags, array: true, default: []
+      t.text :tags, array: true
       t.boolean :has_incidents
       t.datetime :due_at
       t.string :via

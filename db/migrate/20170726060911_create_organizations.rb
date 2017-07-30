@@ -4,13 +4,13 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :url
       t.string :external_id, unique: true, null: false
       t.string :name
-      t.text :domain_names, array: true, default: []
+      t.text :domain_names, array: true
       t.datetime :created_at
       t.text :details
       t.boolean :shared_tickets
-      t.text :tags, array: true, default: []
+      t.text :tags, array: true
 
-      t.text :domain_names, array: true, default: []
+      t.text :domain_names, array: true
     end
 
     add_index :organizations, :_id

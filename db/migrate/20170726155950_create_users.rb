@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, unique: true
       t.string :phone, unique: true, null: false
       t.string :signature
-      t.text :tags, array: true, default: []
+      t.text :tags, array: true
       t.boolean :suspended
       t.string :role
     end
