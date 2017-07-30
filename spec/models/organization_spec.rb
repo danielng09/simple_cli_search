@@ -21,4 +21,19 @@ describe Organization do
       expect(Organization::PRIMARY_ATTRIBUTES).to be_kind_of(Array)
     end
   end
+
+  describe ".valid_search_input" do
+    context "given search field in primary attributes" do
+      context "given non integer string" do
+        it "returns false" do
+          expect(Organization.valid_search_input("_id", "33j8")).to be(false)
+        end
+      end
+      context "given integer string" do
+        it "returns true" do
+          expect(Organization.valid_search_input("_id", "33")).to be(true)
+        end
+      end
+    end
+  end
 end

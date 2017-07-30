@@ -27,4 +27,18 @@ describe Ticket do
     end
   end
 
+  describe ".valid_search_input" do
+    context "given search field in primary attributes" do
+      context "given non integer string" do
+        it "returns true" do
+          expect(Ticket.valid_search_input("_id", "33j8")).to be(true)
+        end
+      end
+      context "given integer string" do
+        it "returns false" do
+          expect(Ticket.valid_search_input("_id", "33")).to be(false)
+        end
+      end
+    end
+  end
 end
