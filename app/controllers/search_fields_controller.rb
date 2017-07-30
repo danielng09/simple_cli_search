@@ -6,6 +6,23 @@ class SearchFieldsController < ApplicationController
     @resource_class = resource_class
   end
 
+  #
+  # @param {UserInterface} user_interface
+  # @param {String} option
+  #
+  def post_handle_option(user_interface, option)
+    if resource_class.column_names.include?(option)
+      controller = SearchValueController.new(resource_class: resource_class,
+                                             search_field: option)
+      user_interface.next(controller)
+
+    else
+      handle_invalid_option(user_interface)
+    end
+  end
+
+  private
+
   def render_body
 
     header title: "Searching for #{resource_class.name.pluralize.downcase}", align: "center", bold: true
@@ -32,20 +49,5 @@ class SearchFieldsController < ApplicationController
 
   def render_options
     aligned " * Type the corresponding field name you'd like to search by (i.e. '_id')"
-  end
-
-  #
-  # @param {UserInterface} user_interface
-  # @param {String} option
-  #
-  def post_handle_option(user_interface, option)
-    if resource_class.column_names.include?(option)
-      controller = SearchValueController.new(resource_class: resource_class,
-                                             search_field: option)
-      user_interface.next(controller)
-
-    else
-      handle_invalid_option(user_interface)
-    end
   end
 end
