@@ -16,6 +16,23 @@ class SearchResultsController < ApplicationController
     @search_results = get_search_results(search_field, search_value, results)
   end
 
+  #
+  # @param {UserInterface} user_interface
+  # @param {String} option
+  #
+  def post_handle_option(user_interface, option)
+    if get_search_result_ids.map.include?(option)
+      controller = DetailedResultController.new(resource_class: resource_class,
+                                                search_value: option)
+      user_interface.next(controller)
+
+    else
+      handle_invalid_option(user_interface)
+    end
+  end
+
+  private
+
   def render_body
     header title: "Search results for #{resource_class.name.pluralize.downcase}", align: "center", bold: true
     vertical_spacing 1
@@ -47,23 +64,6 @@ class SearchResultsController < ApplicationController
   def render_options
     aligned " * Type the corresponding '_id' to view more details" if @search_results.present?
   end
-
-  #
-  # @param {UserInterface} user_interface
-  # @param {String} option
-  #
-  def post_handle_option(user_interface, option)
-    if get_search_result_ids.map.include?(option)
-      controller = DetailedResultController.new(resource_class: resource_class,
-                                                search_value: option)
-      user_interface.next(controller)
-
-    else
-      handle_invalid_option(user_interface)
-    end
-  end
-
-  private
 
   def get_search_result_ids
     @search_results.map { |search_result| search_result.first.to_s }
