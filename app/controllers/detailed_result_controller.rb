@@ -2,6 +2,10 @@ class DetailedResultController < ApplicationController
 
   attr_accessor :resource_class, :search_value
 
+  #
+  # @param {resoure_class} Model
+  # @param {search_value} String
+  #
   def initialize(resource_class:, search_value:)
     @resource_class = resource_class
     @search_value = search_value

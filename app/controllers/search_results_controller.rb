@@ -2,6 +2,12 @@ class SearchResultsController < ApplicationController
 
   attr_accessor :resource_class, :search_field, :search_value, :search_results
 
+  #
+  # @param {resource_class} Model
+  # @param {search_field} String
+  # @param {search_value} String
+  # @param {results} ActiveRecord::Relation
+  #
   def initialize(resource_class:, search_field: nil, search_value: nil, results: nil)
 
     if (search_field.nil? || search_value.nil?) && results.nil?
