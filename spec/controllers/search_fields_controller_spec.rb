@@ -5,6 +5,11 @@ describe SearchFieldsController do
   let(:search_fields_controller) { SearchFieldsController.new(resource_class: Organization) }
   let(:user_interface) { UserInterface.new }
 
+  before do
+    allow(STDOUT).to receive(:write).and_return(nil)
+    allow(STDIN).to receive_message_chain(:gets, :chomp).and_return('quit')
+  end
+
   describe "#post_handle_option" do
     context "given valid option" do
       it "selects the next controller" do

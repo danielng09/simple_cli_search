@@ -5,6 +5,11 @@ describe HomePageController do
   let(:home_page_controller) { HomePageController.new }
   let(:user_interface) { UserInterface.new }
 
+  before do
+    allow(STDOUT).to receive(:write).and_return(nil)
+    allow(STDIN).to receive_message_chain(:gets, :chomp).and_return('quit')
+  end
+
   describe "constants" do
     it "has a constant OPTION_TO_RESOURCE" do
       constant = HomePageController::OPTION_TO_RESOURCE

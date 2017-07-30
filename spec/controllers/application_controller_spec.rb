@@ -6,7 +6,8 @@ describe ApplicationController do
   let(:user_interface) { UserInterface.new }
 
   before do
-    allow($stdout).to receive(:write).and_return(nil)
+    allow(STDOUT).to receive(:write).and_return(nil)
+    allow(STDIN).to receive_message_chain(:gets, :chomp).and_return('quit')
   end
 
   describe "#render" do
