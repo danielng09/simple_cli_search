@@ -8,8 +8,10 @@ __Setup__:
     ```
     bundle install
     ```
-2. Setup the database (postgres)
-    * Start postgres, otherwise download from https://www.postgresql.org/
+2. Setup the database (default postgres)
+    * Download postgres from https://www.postgresql.org/
+    * Start postgres server
+    * Alternatively, you can run mysql by adding 'mysql2' to the gemfile and updating the adapter in the 'db/config.yml' file
 3. Run all the rake tasks to
     * create the database
       ```
