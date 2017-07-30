@@ -76,10 +76,10 @@ class SearchResultsController < ApplicationController
   end
 
   def get_search_results(search_field_input, search_value_input, results_input)
-    search_results = if search_field_input.present? && search_value_input.present?
+    search_results = if search_field_input.present? && !search_value_input.nil?
                         @search_field = search_field_input
-                        @search_value = search_value_input
-                        resource_class.where("#{@search_field} = ?", @search_value)
+                        @search_value = search_value_input.blank? ? nil : search_value_input
+                        resource_class.where({ @search_field => @search_value })
 
                       elsif results_input.present?
                         results_input
