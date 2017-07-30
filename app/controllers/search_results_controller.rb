@@ -75,12 +75,6 @@ class SearchResultsController < ApplicationController
                         results_input
                       end
 
-    if search_results.is_a?(ActiveRecord::Relation)
-      search_results.pluck(*resource_class::PRIMARY_ATTRIBUTES)
-    else
-      search_results.map do |result|
-        result.attributes.select { |k, v| resource_class::PRIMARY_ATTRIBUTES.include?(k) }.values
-      end
-    end
+    search_results.pluck(*resource_class::PRIMARY_ATTRIBUTES)
   end
 end
