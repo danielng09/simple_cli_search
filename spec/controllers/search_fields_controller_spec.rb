@@ -19,9 +19,9 @@ describe SearchFieldsController do
     end
 
     context "given invalid option" do
-      it "handles the error" do
+      it "calls #handle_invalid_option" do
         expect(search_fields_controller).to receive(:handle_invalid_option)
-        search_fields_controller.post_handle_option(user_interface, "not_a_column_name")
+        search_fields_controller.post_handle_option(user_interface, "not a valid search field")
       end
     end
   end
