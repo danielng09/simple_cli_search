@@ -1,6 +1,6 @@
 class SearchResultsController < ApplicationController
 
-  attr_accessor :resource_class, :search_field, :search_value
+  attr_accessor :resource_class, :search_field, :search_value, :search_results
 
   def initialize(resource_class:, search_field: nil, search_value: nil, results: nil)
 
@@ -8,7 +8,7 @@ class SearchResultsController < ApplicationController
       raise ArgumentError.new("Must initialize with either the search_field and search_value or with results")
     end
 
-    if results.present? && !results.is_a?(ActiveRecord::Relation)
+    if !results.nil? && !results.is_a?(ActiveRecord::Relation)
       raise ArgumentError.new("results must be an active record relation")
     end
 
